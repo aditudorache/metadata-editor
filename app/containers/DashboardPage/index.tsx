@@ -6,7 +6,6 @@
 
 import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
-import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { useInjectSaga } from 'utils/injectSaga';
@@ -16,19 +15,17 @@ import makeSelectDashboardPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-const stateSelector = createStructuredSelector({
-  dashboardPage: makeSelectDashboardPage(),
-});
+// const stateSelector = createStructuredSelector({
+//   dashboardPage: makeSelectDashboardPage(),
+// });
 
 interface Props {}
 
-const DashboardPage = (props: Props) => {
+const DashboardPage = () => {
   // Warning: Add your key to RootState in types/index.d.ts file
   useInjectReducer({ key: 'dashboardPage', reducer });
   useInjectSaga({ key: 'dashboardPage', saga });
 
-  const { dashboardPage } = useSelector(stateSelector);
-  const dispatch = useDispatch();
   return (
     <div>
       <Helmet>

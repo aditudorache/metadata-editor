@@ -35,21 +35,12 @@ const data: TreeNode = {
   ],
 };
 
-const useStyles = makeStyles({
-  root: {
-    height: 110,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
-
 const StyledTreeView = styled(MuiTreeView)`
   height: 100%;
-  border: 1px solid;
+  border: 1px solid lightgrey;
 `;
 
 const TreeView: React.FC = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const renderTree = (nodes: TreeNode) => (
@@ -67,7 +58,6 @@ const TreeView: React.FC = () => {
 
   return (
     <StyledTreeView
-      className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpanded={['root']}
       defaultExpandIcon={<ChevronRightIcon />}

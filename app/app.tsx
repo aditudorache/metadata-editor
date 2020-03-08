@@ -20,14 +20,10 @@ import 'sanitize.css/sanitize.css';
 // Import root app
 import App from 'containers/App';
 
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
-
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 
-import { translationMessages } from 'i18n';
 import {
   theme,
   ThemeProvider,
@@ -35,8 +31,6 @@ import {
   StylesProvider,
 } from 'styles/styled-components';
 import configureStore from './configureStore';
-
-// Import i18n messages
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -52,52 +46,31 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
 
-const render = (messages: any, Component = App) => {
+const render = (Component = App) => {
   ReactDOM.render(
     // tslint:disable-next-line:jsx-wrap-multiline
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <StylesProvider injectFirst>
-            <MuiThemeProvider theme={theme}>
-              <ThemeProvider theme={theme}>
-                <Component />
-              </ThemeProvider>
-            </MuiThemeProvider>
-          </StylesProvider>
-        </ConnectedRouter>
-      </LanguageProvider>
+      <ConnectedRouter history={history}>
+        <StylesProvider injectFirst>
+          <MuiThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <Component />
+            </ThemeProvider>
+          </MuiThemeProvider>
+        </StylesProvider>
+      </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
   );
 };
 
 if (module.hot) {
-  module.hot.accept(['./i18n', './containers/App'], () => {
+  module.hot.accept(['./containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     // eslint-disable-next-line no-shadow,global-require
     const App = require('./containers/App').default; // https://github.com/webpack/webpack-dev-server/issues/100
-    render(translationMessages, App);
+    render(App);
   });
-}
-
-// Chunked polyfill for browsers without Intl support
-if (!(window as any).Intl) {
-  new Promise(resolve => {
-    resolve(import('intl'));
-  })
-    .then(() =>
-      Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/de.js'),
-      ]),
-    )
-    .then(() => render(translationMessages))
-    .catch(err => {
-      throw err;
-    });
-} else {
-  render(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since

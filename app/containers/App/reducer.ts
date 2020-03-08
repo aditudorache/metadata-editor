@@ -5,10 +5,6 @@ import ActionTypes from './constants';
 export const initialState: ContainerState = {
   loading: false,
   error: false,
-  currentUser: '',
-  userData: {
-    repos: [],
-  },
 };
 
 // Take this container's state (as a slice of root state), this container's actions and return new state
@@ -19,21 +15,13 @@ function appReducer(
   switch (action.type) {
     case ActionTypes.LOAD_REPOS:
       return {
-        currentUser: state.currentUser,
         loading: true,
         error: false,
-        userData: {
-          repos: [],
-        },
       };
     case ActionTypes.LOAD_REPOS_SUCCESS:
       return {
-        currentUser: action.payload.username,
         loading: false,
         error: state.error,
-        userData: {
-          repos: action.payload.repos,
-        },
       };
     case ActionTypes.LOAD_REPOS_ERROR: {
       const { ...rest } = state;

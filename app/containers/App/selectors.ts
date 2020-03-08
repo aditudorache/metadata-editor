@@ -9,12 +9,6 @@ const selectGlobal = (state: ApplicationRootState) => state.global;
 
 const selectRoute = (state: ApplicationRootState) => state.router;
 
-const makeSelectCurrentUser = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.currentUser,
-  );
-
 const makeSelectLoading = () =>
   createSelector(
     selectGlobal,
@@ -27,23 +21,10 @@ const makeSelectError = () =>
     globalState => globalState.error,
   );
 
-const makeSelectRepos = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.userData.repos,
-  );
-
 const makeSelectLocation = () =>
   createSelector(
     selectRoute,
     routeState => routeState.location,
   );
 
-export {
-  selectGlobal,
-  makeSelectCurrentUser,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
-  makeSelectLocation,
-};
+export { selectGlobal, makeSelectLoading, makeSelectError, makeSelectLocation };

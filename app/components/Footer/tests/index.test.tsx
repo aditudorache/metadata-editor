@@ -1,5 +1,4 @@
 import React from 'react';
-import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 
 import { render } from '@testing-library/react';
@@ -20,9 +19,7 @@ describe('<Footer />', () => {
     } = render(
       // tslint:disable-next-line: jsx-wrap-multiline
       <Provider store={store}>
-        <IntlProvider locale="en">
-          <Footer />
-        </IntlProvider>
+        <Footer />
       </Provider>,
     );
 

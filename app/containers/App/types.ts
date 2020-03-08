@@ -1,6 +1,5 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
-import { Repo } from '../RepoListItem/types';
 import { ApplicationRootState } from '../../types';
 
 /* --- STATE --- */
@@ -8,12 +7,6 @@ import { ApplicationRootState } from '../../types';
 interface AppState {
   readonly loading: boolean;
   readonly error?: object | boolean;
-  readonly currentUser: string;
-  readonly userData: UserData;
-}
-
-interface UserData {
-  readonly repos?: Repo[];
 }
 
 /* --- ACTIONS --- */
@@ -26,4 +19,4 @@ type ContainerState = AppState;
 type ContainerActions = AppActions;
 
 // eslint-disable-next-line no-undef
-export { RootState, ContainerState, ContainerActions, UserData };
+export { RootState, ContainerState, ContainerActions };

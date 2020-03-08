@@ -1,13 +1,11 @@
-import dashboardPageReducer from '../reducer';
+import dashboardPageReducer, { initialState } from '../reducer';
 // import { someAction } from '../actions';
 import { ContainerState } from '../types';
 
 describe('dashboardPageReducer', () => {
   let state: ContainerState;
   beforeEach(() => {
-    state = {
-      default: null,
-    };
+    state = { ...initialState };
   });
 
   it('returns the initial state', () => {

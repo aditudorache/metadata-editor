@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { IntlProvider } from 'react-intl';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import { createMemoryHistory } from 'history';
 
@@ -16,11 +15,9 @@ describe('<Header />', () => {
     const { container } = render(
       // tslint:disable-next-line: jsx-wrap-multiline
       <Provider store={store}>
-        <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
-            <Header />
-          </ConnectedRouter>
-        </IntlProvider>
+        <ConnectedRouter history={history}>
+          <Header />
+        </ConnectedRouter>
       </Provider>,
     );
     expect(container.firstChild).toMatchSnapshot();
