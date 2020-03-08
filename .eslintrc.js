@@ -94,7 +94,16 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: false,
+      },
+    ],
     'react/prop-types': 0,
+    'react/jsx-props-no-spreading': 0
   },
   settings: {
     'import/resolver': {

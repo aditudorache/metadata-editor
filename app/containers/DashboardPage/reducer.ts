@@ -5,18 +5,18 @@
  */
 
 import ActionTypes from './constants';
-import { ContainerState, ContainerActions } from './types';
+import { DashboardPageState, DashboardPageActions } from './types';
 
-export const initialState: ContainerState = {
+export const initialState: DashboardPageState = {
   treeData: null,
   selectedNodeId: null,
   detailData: null,
 };
 
 function dashboardPageReducer(
-  state: ContainerState = initialState,
-  action: ContainerActions,
-): ContainerState {
+  state = initialState,
+  action: DashboardPageActions,
+): DashboardPageState {
   switch (action.type) {
     case ActionTypes.NODE_SELECTED:
       return { ...state, selectedNodeId: action.payload };

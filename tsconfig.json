@@ -26,7 +26,9 @@
     "strictFunctionTypes": false,
     "pretty": true,
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["react", "jest", "node"],
+    "skipLibCheck": true
   },
   "include": ["app/**/*"],
   "exclude": ["node_modules"]

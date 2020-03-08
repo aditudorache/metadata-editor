@@ -2,7 +2,7 @@ import { Reducer, Store } from 'redux';
 import { RouterState } from 'connected-react-router';
 import { Saga } from 'redux-saga';
 import { ContainerState as AppState } from 'containers/App/types';
-import { ContainerState as DashboardPageState } from 'containers/DashboardPage/types';
+import { DashboardPageState } from 'containers/DashboardPage/types';
 
 export interface InjectedStore extends Store {
   injectedReducers: any;

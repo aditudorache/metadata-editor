@@ -22,10 +22,12 @@ export default function hocWithReducer<P>({
   ): React.ComponentType<P> {
     // dont wanna give access to HOC. Child only
     class ReducerInjector extends React.Component<P> {
+      // eslint-disable-next-line react/static-property-placement
       public static contextType = ReactReduxContext;
 
       public static WrappedComponent = WrappedComponent;
 
+      // eslint-disable-next-line react/static-property-placement
       public static displayName = `withReducer(${WrappedComponent.displayName ||
         WrappedComponent.name ||
         'Component'})`;

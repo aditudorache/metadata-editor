@@ -6,9 +6,8 @@ import { initialState } from './reducer';
  * Direct selector to the dashboardPage state domain
  */
 
-const selectDashboardPageDomain = (state: ApplicationRootState) => {
-  return state || initialState;
-};
+const selectDashboardPageDomain = (state: ApplicationRootState) =>
+  state || initialState;
 
 /**
  * Other specific selectors
@@ -21,9 +20,7 @@ const selectDashboardPageDomain = (state: ApplicationRootState) => {
 const makeSelectDashboardPage = () =>
   createSelector(
     selectDashboardPageDomain,
-    substate => {
-      return substate;
-    },
+    substate => substate,
   );
 
 export default makeSelectDashboardPage;

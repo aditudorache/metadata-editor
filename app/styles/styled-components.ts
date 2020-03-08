@@ -9,7 +9,7 @@ import {
 // your theme variables
 export interface IThemeInterface {}
 
-const theme = createMuiTheme();
+const muiTheme = createMuiTheme();
 
 const {
   default: styled,
@@ -26,7 +26,7 @@ const themeSpacing = (...props: number[]) => ({ theme }) =>
 
 export {
   css,
-  theme,
+  muiTheme as theme,
   themeSpacing,
   createGlobalStyle,
   keyframes,

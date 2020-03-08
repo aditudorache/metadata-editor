@@ -6,12 +6,10 @@
 
 import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
-import { createStructuredSelector } from 'reselect';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import MainLayout from 'components/MainLayout';
-import makeSelectDashboardPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
