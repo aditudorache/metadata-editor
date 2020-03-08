@@ -7,6 +7,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import { useDispatch } from 'react-redux';
 import { nodeSelectedAction } from 'containers/DashboardPage/actions';
+
 interface TreeNode {
   id: string;
   name: string;
@@ -41,6 +42,9 @@ const StyledTreeView = styled(MuiTreeView)`
 
 const TreeView: React.FC = () => {
   const dispatch = useDispatch();
+  // const  treeData = useSelector<{ dashboardPage?: DashboardPageState }>(state => state?.dashboardPage?.treeData );
+
+  // const [tree, setTree] = useState(viewData);
 
   const renderTree = (nodes: TreeNode) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>

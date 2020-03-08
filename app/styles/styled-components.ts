@@ -5,8 +5,7 @@ import {
   createMuiTheme,
 } from '@material-ui/core';
 
-// theme.ts
-// your theme variables
+// theme variables
 export interface IThemeInterface {}
 
 const muiTheme = createMuiTheme();
