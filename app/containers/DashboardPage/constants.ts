@@ -5,7 +5,7 @@
  */
 
 enum ActionTypes {
-  DEFAULT_ACTION = 'app/DashboardPage/DEFAULT_ACTION',
+  NODE_SELECTED = 'app/DashboardPage/NODE_SELECTED',
 }
 
 export default ActionTypes;

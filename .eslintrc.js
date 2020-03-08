@@ -94,6 +94,7 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
+    'react/prop-types': 0,
   },
   settings: {
     'import/resolver': {

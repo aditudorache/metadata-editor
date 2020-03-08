@@ -4,7 +4,8 @@ import { ApplicationRootState } from 'types';
 
 /* --- STATE --- */
 interface DashboardPageState {
-  readonly default: any;
+  treeData: any;
+  selectedNode: any;
 }
 
 /* --- ACTIONS --- */
