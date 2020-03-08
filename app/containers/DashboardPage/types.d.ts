@@ -5,7 +5,8 @@ import { ApplicationRootState } from 'types';
 /* --- STATE --- */
 interface DashboardPageState {
   treeData: any;
-  selectedNode: any;
+  selectedNodeId: any;
+  detailData: any;
 }
 
 /* --- ACTIONS --- */

@@ -9,7 +9,8 @@ import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
   treeData: null,
-  selectedNode: null,
+  selectedNodeId: null,
+  detailData: null,
 };
 
 function dashboardPageReducer(
@@ -18,7 +19,9 @@ function dashboardPageReducer(
 ): ContainerState {
   switch (action.type) {
     case ActionTypes.NODE_SELECTED:
-      return { ...state, selectedNode: action.payload };
+      return { ...state, selectedNodeId: action.payload };
+    case ActionTypes.DETAIL_DATA_CHANGED:
+      return { ...state, detailData: action.payload };
     default:
       return state;
   }
