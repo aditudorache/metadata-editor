@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 
 import H1 from 'components/H1';
+import MuiButton from 'components/MuiButton';
 import messages from './messages';
 import List from './List';
 import ListItem from './ListItem';
@@ -23,6 +24,7 @@ export default function FeaturePage() {
           content="Feature page of React.js Boilerplate application"
         />
       </Helmet>
+
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
@@ -35,7 +37,7 @@ export default function FeaturePage() {
             <FormattedMessage {...messages.scaffoldingMessage} />
           </p>
         </ListItem>
-
+        <MuiButton></MuiButton>
         <ListItem>
           <ListItemTitle>
             <FormattedMessage {...messages.feedbackHeader} />

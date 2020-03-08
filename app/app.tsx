@@ -28,6 +28,12 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 
 import { translationMessages } from 'i18n';
+import {
+  theme,
+  ThemeProvider,
+  MuiThemeProvider,
+  StylesProvider,
+} from 'styles/styled-components';
 import configureStore from './configureStore';
 
 // Import i18n messages
@@ -52,7 +58,13 @@ const render = (messages: any, Component = App) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <Component />
+          <StylesProvider injectFirst>
+            <MuiThemeProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <Component />
+              </ThemeProvider>
+            </MuiThemeProvider>
+          </StylesProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
@@ -68,6 +80,7 @@ if (module.hot) {
     render(translationMessages, App);
   });
 }
+
 // Chunked polyfill for browsers without Intl support
 if (!(window as any).Intl) {
   new Promise(resolve => {

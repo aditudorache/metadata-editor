@@ -1,20 +1,16 @@
 import * as styledComponents from 'styled-components';
+import {
+  StylesProvider,
+  ThemeProvider as MuiThemeProvider,
+  createMuiTheme,
+} from '@material-ui/core';
 
 // theme.ts
 // your theme variables
-export interface IThemeInterface {
-  primary: string;
-  componentBackground: string;
-  componentBackgroundSecondary: string;
-}
+export interface IThemeInterface {}
 
-export const theme = {
-  default: {
-    primary: '#fff',
-    componentBackground: '#fff',
-    componentBackgroundSecondary: '#fff',
-  },
-};
+const theme = createMuiTheme();
+
 const {
   default: styled,
   css,
@@ -25,5 +21,17 @@ const {
   IThemeInterface
 >;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider };
+const themeSpacing = (...props: number[]) => ({ theme }) =>
+  theme.spacing(...props);
+
+export {
+  css,
+  theme,
+  themeSpacing,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  MuiThemeProvider,
+  StylesProvider,
+};
 export default styled;
