@@ -362,6 +362,8 @@ const DetailView = () => {
   const [formData, setFormData] = useState(detailData);
   const dispatch = useDispatch();
 
+  console.log(formData);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -377,13 +379,14 @@ const DetailView = () => {
     <StyledDetailView>
       <form noValidate autoComplete="off">
         {Object.entries(formData).map(([key, value]) => {
-          if (isObject(value) || Array.isArray(value)) return () => {};
+          if (isObject(value) || Array.isArray(value)) return null;
           return (
             <StyledTextField
               fullWidth
+              key={key}
               id={key}
               label={key}
-              value={value}
+              value={value || ''}
               onChange={handleChange}
             />
           );
