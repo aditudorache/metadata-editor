@@ -46,7 +46,7 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
 
-const render = (Component = App) => {
+const render = () => {
   ReactDOM.render(
     // tslint:disable-next-line:jsx-wrap-multiline
     <Provider store={store}>
@@ -54,7 +54,7 @@ const render = (Component = App) => {
         <StylesProvider injectFirst>
           <MuiThemeProvider theme={theme}>
             <ThemeProvider theme={theme}>
-              <Component />
+              <App />
             </ThemeProvider>
           </MuiThemeProvider>
         </StylesProvider>
@@ -64,13 +64,10 @@ const render = (Component = App) => {
   );
 };
 
+render();
+
 if (module.hot) {
-  module.hot.accept(['./containers/App'], () => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    // eslint-disable-next-line no-shadow,global-require
-    const App = require('./containers/App').default; // https://github.com/webpack/webpack-dev-server/issues/100
-    render(App);
-  });
+  module.hot.accept();
 }
 
 // Install ServiceWorker and AppCache in the end since
