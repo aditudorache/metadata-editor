@@ -1,25 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import { createMemoryHistory } from 'history';
 
+import { withAppContext } from 'tests/utils';
 import Header from '../index';
-import configureStore from '../../../configureStore';
 
 describe('<Header />', () => {
-  const history = createMemoryHistory();
-  const store = configureStore({}, history);
-
   it('should render a div', () => {
-    const { container } = render(
-      // tslint:disable-next-line: jsx-wrap-multiline
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Header />
-        </ConnectedRouter>
-      </Provider>,
-    );
+    const { container } = render(withAppContext(<Header />));
     expect(container.firstChild).toMatchSnapshot();
   });
 });
