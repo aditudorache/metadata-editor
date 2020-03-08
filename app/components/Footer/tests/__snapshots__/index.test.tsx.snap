@@ -2,46 +2,10 @@
 
 exports[`<Footer /> should render and match the snapshot 1`] = `
 <footer
-  class="sc-bxivhb dtkJYr"
+  class="sc-AxjAm ABZHu"
 >
   <section>
-    <span>
-      This project is licensed under the MIT license.
-    </span>
-  </section>
-  <section>
-    <div
-      class="sc-htpNat ffBkYG"
-    >
-      <select
-        class="sc-bwzfXH eFNPLc"
-      >
-        <option
-          value="en"
-        >
-          en
-        </option>
-        <option
-          value="de"
-        >
-          de
-        </option>
-      </select>
-    </div>
-  </section>
-  <section>
-    <span>
-      
-      Made with love by 
-      <a
-        class="sc-bdVaJa cpswpp"
-        href="https://twitter.com/mxstbr"
-      >
-        Max Stoiber
-      </a>
-      .
-    
-    </span>
+    Footer
   </section>
 </footer>
 `;

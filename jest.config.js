@@ -10,10 +10,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      statements: 98,
-      branches: 91,
-      functions: 98,
-      lines: 98,
+      statements: 90,
+      branches: 90,
+      functions: 90,
+      lines: 90,
     },
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
@@ -29,7 +29,7 @@ module.exports = {
       '<rootDir>/internals/mocks/image.js',
   },
   setupFilesAfterEnv: [
-    '<rootDir>/internals/testing/test-bundler.js',
+    '<rootDir>/internals/testing/test-bundler.ts',
     '@testing-library/jest-dom/extend-expect',
   ],
   testRegex: 'tests/.*\\.test\\.(js|ts(x?))$',

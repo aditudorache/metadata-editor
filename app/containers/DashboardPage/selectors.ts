@@ -18,10 +18,7 @@ const selectDashboardPageDomain = (state: ApplicationRootState) =>
  */
 
 const makeSelectDashboardPage = () =>
-  createSelector(
-    selectDashboardPageDomain,
-    substate => substate,
-  );
+  createSelector(selectDashboardPageDomain, substate => substate);
 
 export default makeSelectDashboardPage;
 export { selectDashboardPageDomain };

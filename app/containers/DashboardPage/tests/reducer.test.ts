@@ -1,9 +1,9 @@
 import dashboardPageReducer, { initialState } from '../reducer';
 // import { someAction } from '../actions';
-import { ContainerState } from '../types';
+import { DashboardPageState } from '../types';
 
 describe('dashboardPageReducer', () => {
-  let state: ContainerState;
+  let state: DashboardPageState;
   beforeEach(() => {
     state = { ...initialState };
   });
