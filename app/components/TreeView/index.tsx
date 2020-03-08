@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import MuiTreeView from '@material-ui/lab/TreeView';
@@ -7,6 +7,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import { useDispatch } from 'react-redux';
 import { nodeSelectedAction } from 'containers/DashboardPage/actions';
+import viewData from 'containers/DashboardPage/viewData';
+import extractTree from './extractTree';
 
 interface TreeNode {
   id: string;
@@ -14,37 +16,18 @@ interface TreeNode {
   children?: TreeNode[];
 }
 
-const data: TreeNode = {
-  id: 'root',
-  name: 'Parent',
-  children: [
-    {
-      id: '1',
-      name: 'Child - 1',
-    },
-    {
-      id: '3',
-      name: 'Child - 3',
-      children: [
-        {
-          id: '4',
-          name: 'Child - 4',
-        },
-      ],
-    },
-  ],
-};
-
 const StyledTreeView = styled(MuiTreeView)`
   height: 100%;
   border: 1px solid lightgrey;
 `;
 
+const data = extractTree({ name: 'view', id: 'view' }, viewData);
+
 const TreeView: React.FC = () => {
   const dispatch = useDispatch();
   // const  treeData = useSelector<{ dashboardPage?: DashboardPageState }>(state => state?.dashboardPage?.treeData );
 
-  // const [tree, setTree] = useState(viewData);
+  const [tree] = useState(data);
 
   const renderTree = (nodes: TreeNode) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
@@ -66,7 +49,7 @@ const TreeView: React.FC = () => {
       defaultExpandIcon={<ChevronRightIcon />}
       onNodeSelect={handleNodeSelect}
     >
-      {renderTree(data)}
+      {renderTree(tree)}
     </StyledTreeView>
   );
 };

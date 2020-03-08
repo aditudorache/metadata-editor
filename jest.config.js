@@ -32,7 +32,7 @@ module.exports = {
     '<rootDir>/internals/testing/test-bundler.ts',
     '@testing-library/jest-dom/extend-expect',
   ],
-  testRegex: 'tests/.*\\.test\\.(js|ts(x?))$',
+  testRegex: '.*\\.test\\.(js|ts(x?))$',
   transform: {
     '^.+\\.(ts(x?)|js)$': 'ts-jest',
   },
