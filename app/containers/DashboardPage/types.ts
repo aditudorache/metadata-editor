@@ -1,10 +1,11 @@
 import { ActionType } from 'typesafe-actions';
+import { TreeNode } from 'components/TreeView';
 import * as actions from './actions';
 
 /* --- STATE --- */
 export interface DashboardPageState {
-  treeData: any;
-  selectedNodeId: any;
+  treeData: TreeNode | null;
+  selectedNodeId: string;
   detailData: any;
 }
 

@@ -4,23 +4,24 @@ export interface Node {
   [name: string]: any;
 }
 
-let i = 1;
-
 const extractTree = (parent: Node, treeNode: Node) => {
   const children = Object.entries(treeNode)
     .map(([key, value]) => {
       if (Array.isArray(value)) {
         const item = value.reduce(
-          (acc, val) => ({
+          (acc, val, index) => ({
             ...acc,
-            [val.name]: val,
+            [val.name]: {
+              path: `${parent.id}.${key}[${index}]`,
+              ...val,
+            },
           }),
           {},
         );
 
-        // eslint-disable-next-line no-plusplus
-        const id = `array${i++}`;
-        const name = `${key} (${id})`;
+        const path = `${parent.id}.${key}`;
+        const id = path;
+        const name = `${key}`;
 
         return extractTree(
           {
@@ -32,9 +33,9 @@ const extractTree = (parent: Node, treeNode: Node) => {
       }
 
       if (typeof value === 'object') {
-        // eslint-disable-next-line no-plusplus
-        const id = value ? String((value as Node)?.id || '') : `empty${i++}`;
-        const name = `${key} (${id})`;
+        const path = value?.path || `${parent.id}.${key}`;
+        const id = path;
+        const name = `${key}`;
         if (value === null)
           return {
             name,

@@ -22,6 +22,8 @@ function dashboardPageReducer(
       return { ...state, selectedNodeId: action.payload };
     case ActionTypes.DETAIL_DATA_CHANGED:
       return { ...state, detailData: action.payload };
+    case ActionTypes.TREE_CHANGED:
+      return { ...state, treeData: action.payload };
     default:
       return state;
   }
