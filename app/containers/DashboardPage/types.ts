@@ -5,7 +5,7 @@ import * as actions from './actions';
 /* --- STATE --- */
 export interface DashboardPageState {
   treeData: TreeNode | null;
-  selectedNodeId: string;
+  selectedNodeId: string | null;
   detailData: any;
 }
 
