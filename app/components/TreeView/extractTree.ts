@@ -11,7 +11,7 @@ const extractTree = (parent: Node, treeNode: Node) => {
         const item = value.reduce(
           (acc, val, index) => ({
             ...acc,
-            [val.name]: {
+            [val.name || val.$id]: {
               path: `${parent.id}.${key}[${index}]`,
               ...val,
             },
@@ -32,16 +32,10 @@ const extractTree = (parent: Node, treeNode: Node) => {
         );
       }
 
-      if (typeof value === 'object') {
+      if (typeof value === 'object' && value !== null) {
         const path = value?.path || `${parent.id}.${key}`;
         const id = path;
         const name = `${key}`;
-        if (value === null)
-          return {
-            name,
-            id,
-            children: [],
-          };
 
         return extractTree(
           {
