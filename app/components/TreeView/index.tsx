@@ -55,7 +55,11 @@ const TreeView: React.FC = () => {
   };
 
   const handleNodeSelect = (e, nodeId) => {
-    dispatch(nodeSelectedAction(nodeId.substring(nodeId.indexOf('.') + 1)));
+    dispatch(
+      nodeSelectedAction(
+        nodeId === 'root' ? '' : nodeId.substring(nodeId.indexOf('.') + 1),
+      ),
+    );
   };
 
   return (

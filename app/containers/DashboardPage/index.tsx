@@ -13,10 +13,6 @@ import MainLayout from 'components/MainLayout';
 import reducer from './reducer';
 import saga from './saga';
 
-// const stateSelector = createStructuredSelector({
-//   dashboardPage: makeSelectDashboardPage(),
-// });
-
 interface Props {}
 
 const DashboardPage = () => {

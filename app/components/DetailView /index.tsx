@@ -18,7 +18,8 @@ const StyledTextField = styled(TextField)`
 const getDetail = state => {
   if (!state.dashboardPage) return null;
   const { treeData, selectedNodeId } = state?.dashboardPage;
-  const node = get(treeData, selectedNodeId, null);
+  console.log('treeData', selectedNodeId);
+  const node = selectedNodeId ? get(treeData, selectedNodeId, null) : treeData;
   return node;
 };
 
