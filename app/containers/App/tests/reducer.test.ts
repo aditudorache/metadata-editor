@@ -1,7 +1,6 @@
 import appReducer from '../reducer';
 import { loadRepos, reposLoaded, repoLoadingError } from '../actions';
 import { ContainerState } from '../types';
-import { Repo } from '../../RepoListItem/types';
 
 describe('appReducer', () => {
   let state: ContainerState;
@@ -9,10 +8,6 @@ describe('appReducer', () => {
     state = {
       loading: false,
       error: false,
-      currentUser: '',
-      userData: {
-        repos: [],
-      },
     };
   });
 
@@ -23,12 +18,8 @@ describe('appReducer', () => {
 
   it('should handle the loadRepos action correctly', () => {
     const expectedResult = {
-      currentUser: '',
       loading: true,
       error: false,
-      userData: {
-        repos: [],
-      },
     };
     expect(appReducer(state, loadRepos())).toEqual(expectedResult);
   });
@@ -38,15 +29,11 @@ describe('appReducer', () => {
       {
         name: 'My Repo',
       },
-    ] as Repo[];
+    ];
     const username = 'test';
     const expectedResult = {
-      currentUser: username,
       loading: false,
       error: false,
-      userData: {
-        repos: fixture,
-      },
     };
     expect(appReducer(state, reposLoaded(fixture, username))).toEqual(
       expectedResult,
@@ -59,13 +46,8 @@ describe('appReducer', () => {
     };
 
     const expectedResult = {
-      currentUser: '',
-      // error: fixture,
       error: false,
       loading: false,
-      userData: {
-        repos: [],
-      },
     };
 
     expect(appReducer(state, repoLoadingError(fixture))).toEqual(

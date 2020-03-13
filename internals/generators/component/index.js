@@ -34,12 +34,6 @@ module.exports = {
     },
     {
       type: 'confirm',
-      name: 'wantMessages',
-      default: true,
-      message: 'Do you want i18n messages (i.e. will this component use text)?',
-    },
-    {
-      type: 'confirm',
       name: 'wantLoadable',
       default: false,
       message: 'Do you want to load the component asynchronously?',
@@ -72,16 +66,6 @@ module.exports = {
       });
     }
 
-    // If they want a i18n messages file
-    if (data.wantMessages) {
-      actions.push({
-        type: 'add',
-        path: '../../app/components/{{properCase name}}/messages.ts',
-        templateFile: './component/messages.ts.hbs',
-        abortOnFail: true,
-      });
-    }
-
     // If want Loadable.js to load the component asynchronously
     if (data.wantLoadable) {
       actions.push({
@@ -92,7 +76,7 @@ module.exports = {
       });
     }
     // If want Loadable.js to load the component asynchronously
-  
+
     actions.push({
       type: 'prettify',
       path: '/components/',

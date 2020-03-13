@@ -28,6 +28,7 @@ export default function hocWithSaga<P>({ key, saga, mode }: InjectSagaParams) {
       // public static contextType = ReactReduxContext;
       public injectors: ReturnType<typeof getInjectors>;
 
+      // eslint-disable-next-line react/static-property-placement
       public static displayName = `withSaga(${WrappedComponent.displayName ||
         WrappedComponent.name ||
         'Component'})`;

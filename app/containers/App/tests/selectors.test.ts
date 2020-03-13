@@ -1,13 +1,10 @@
 import {
   selectGlobal,
-  makeSelectCurrentUser,
   makeSelectLoading,
   makeSelectError,
-  makeSelectRepos,
   makeSelectLocation,
 } from '../selectors';
 import { ApplicationRootState } from '../../../types';
-import { Repo } from '../../RepoListItem/types';
 
 describe('selectGlobal', () => {
   it('should select the global state', () => {
@@ -16,20 +13,6 @@ describe('selectGlobal', () => {
       global: globalState,
     } as ApplicationRootState;
     expect(selectGlobal(mockedState)).toEqual(globalState);
-  });
-});
-
-describe('makeSelectCurrentUser', () => {
-  it('should select the current user', () => {
-    const currentUserSelector = makeSelectCurrentUser();
-    const username = 'mxstbr';
-    // tslint:disable-next-line:no-object-literal-type-assertion
-    const mockedState = {
-      global: {
-        currentUser: username,
-      },
-    } as ApplicationRootState;
-    expect(currentUserSelector(mockedState)).toEqual(username);
   });
 });
 
@@ -56,22 +39,6 @@ describe('makeSelectError', () => {
       },
     };
     expect(errorSelector(mockedState)).toEqual(error);
-  });
-});
-
-describe('makeSelectRepos', () => {
-  it('should select the repos', () => {
-    const reposSelector = makeSelectRepos();
-    const repos: Repo[] = [];
-    // tslint:disable-next-line:no-object-literal-type-assertion
-    const mockedState = {
-      global: {
-        userData: {
-          repos,
-        },
-      },
-    } as ApplicationRootState;
-    expect(reposSelector(mockedState)).toEqual(repos);
   });
 });
 

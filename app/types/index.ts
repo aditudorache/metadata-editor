@@ -1,9 +1,8 @@
 import { Reducer, Store } from 'redux';
 import { RouterState } from 'connected-react-router';
-import { ContainerState as LanguageProviderState } from 'containers/LanguageProvider/types';
-import { ContainerState as AppState } from 'containers/App/types';
-import { ContainerState as HomeState } from 'containers/HomePage/types';
 import { Saga } from 'redux-saga';
+import { ContainerState as AppState } from 'containers/App/types';
+import { DashboardPageState } from 'containers/DashboardPage/types';
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -26,8 +25,7 @@ export interface InjectSagaParams {
 export interface ApplicationRootState {
   readonly router: RouterState;
   readonly global: AppState;
-  readonly language: LanguageProviderState;
-  readonly home: HomeState;
+  readonly dashboardPage: DashboardPageState;
   // for testing purposes
   readonly test: any;
 }
