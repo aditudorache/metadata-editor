@@ -8,7 +8,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   nodeSelectedAction,
-  treeChangedChangedAction,
+  treeChangedAction,
 } from 'containers/DashboardPage/actions';
 import jsonViewData from 'containers/DashboardPage/viewData';
 import { DashboardPageState } from 'containers/DashboardPage/types';
@@ -34,7 +34,8 @@ const TreeView: React.FC = () => {
   const [tree, setTree] = useState();
 
   useEffect(() => {
-    dispatch(treeChangedChangedAction(jsonViewData));
+    if (treeData) return;
+    dispatch(treeChangedAction(jsonViewData));
   }, []);
 
   useEffect(() => {
