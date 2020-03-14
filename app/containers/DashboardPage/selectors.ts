@@ -3,7 +3,7 @@ import { ApplicationRootState } from 'types';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the dashboardPage state domain
+ * Direct selector to the editor state domain
  */
 
 const selectDashboardPageDomain = (state: ApplicationRootState) =>

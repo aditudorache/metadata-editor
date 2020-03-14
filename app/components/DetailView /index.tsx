@@ -8,16 +8,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailDataChangedAction } from 'containers/DashboardPage/actions';
 
 const StyledDetailView = styled.div`
-  height: 100%;
+  padding: ${themeSpacing(1)}px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
-const StyledTextField = styled(TextField)`
-  margin: ${themeSpacing(1)}px;
+// Here we set to height in pixels to force the flex container to scroll
+const StyledForm = styled.form`
+  flex-grow: 1;
+  height: 1px;
+  overflow: auto;
+`;
+
+const ButtonsBar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: ${themeSpacing(1)}px;
+  padding: ${themeSpacing(1)}px;
+  & > button {
+    margin-left: ${themeSpacing(1)}px;
+  }
 `;
 
 const getDetail = state => {
-  if (!state.dashboardPage) return null;
-  const { treeData, selectedNodeId } = state?.dashboardPage;
+  if (!state.editor) return null;
+  const { treeData, selectedNodeId } = state?.editor;
   const node = selectedNodeId ? get(treeData, selectedNodeId, null) : treeData;
   return node;
 };
@@ -48,18 +64,12 @@ const DetailView = () => {
 
   return (
     <StyledDetailView>
-      <form noValidate autoComplete="off">
-        <Button variant="contained" onClick={handleCancel}>
-          Cancel
-        </Button>
-        <Button variant="contained" color="primary" onClick={handleSave}>
-          Save
-        </Button>
+      <StyledForm noValidate autoComplete="off">
         {formData &&
           Object.entries(formData).map(([key, value]) => {
             if (isObject(value) || Array.isArray(value)) return null;
             return (
-              <StyledTextField
+              <TextField
                 fullWidth
                 key={key}
                 id={key}
@@ -69,7 +79,15 @@ const DetailView = () => {
               />
             );
           })}
-      </form>
+      </StyledForm>
+      <ButtonsBar>
+        <Button variant="contained" onClick={handleCancel}>
+          Cancel
+        </Button>
+        <Button variant="contained" color="primary" onClick={handleSave}>
+          Save
+        </Button>
+      </ButtonsBar>
     </StyledDetailView>
   );
 };

@@ -22,6 +22,7 @@ import App from 'containers/App';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
+import '!file-loader?name=[name].[ext]!./images/GeoDotNetLogo.png';
 import 'file-loader?name=.htaccess!./.htaccess';
 
 import {

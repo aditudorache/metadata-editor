@@ -29,7 +29,7 @@ const options = {
 };
 
 const JsonView = () => {
-  const treeData = useSelector(state => state?.dashboardPage?.treeData);
+  const treeData = useSelector(state => state?.editor?.treeData);
   const dispatch = useDispatch();
   const handleChange = data => {
     dispatch(treeChangedAction(data || {}));

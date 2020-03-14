@@ -18,18 +18,16 @@ import DashboardPage from 'containers/DashboardPage';
 import RawPage from 'containers/RawPage';
 import GlobalStyle from '../../global-styles';
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
+const AppStyle = styled.div`
   margin: 0 auto;
   display: flex;
   min-height: 100%;
-  padding: 0 16px;
   flex-direction: column;
 `;
 
 export default function App() {
   return (
-    <AppWrapper>
+    <AppStyle>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
@@ -43,6 +41,6 @@ export default function App() {
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
-    </AppWrapper>
+    </AppStyle>
   );
 }

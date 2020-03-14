@@ -21,14 +21,13 @@ export interface TreeNode {
 }
 
 const StyledTreeView = styled(MuiTreeView)`
-  height: 100%;
-  border: 1px solid lightgrey;
+  min-height: calc(100% - 4px);
 `;
 
 const TreeView: React.FC = () => {
   const dispatch = useDispatch();
-  const treeData = useSelector<{ dashboardPage?: DashboardPageState }>(
-    state => state?.dashboardPage?.treeData,
+  const treeData = useSelector<{ editor?: DashboardPageState }>(
+    state => state?.editor?.treeData,
   );
 
   const [tree, setTree] = useState();

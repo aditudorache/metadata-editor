@@ -25,7 +25,7 @@ export interface InjectSagaParams {
 export interface ApplicationRootState {
   readonly router: RouterState;
   readonly global: AppState;
-  readonly dashboardPage: DashboardPageState;
+  readonly editor: DashboardPageState;
   // for testing purposes
   readonly test: any;
 }
