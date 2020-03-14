@@ -1,6 +1,6 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-
+import { Button } from '@material-ui/core';
 import styled, { themeSpacing } from 'styles/styled-components';
 import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,16 +35,67 @@ const JsonView = () => {
     dispatch(treeChangedAction(data || {}));
   };
 
+  const [editor, setEditor] = useState(null);
+
+  const setRef = instance => {
+    if (instance) {
+      const { jsonEditor } = instance;
+      setEditor(jsonEditor);
+    }
+  };
+
   useEffect(() => {
     if (treeData) return;
     handleChange(jsonViewData);
   }, [treeData]);
 
+  const handleFormat = () => {
+    if (editor && editor.getMode() === 'text') {
+      editor.format();
+    }
+  };
+
+  const handleCompact = () => {
+    if (editor !== null && editor.getMode() === 'text') {
+      editor.compact();
+    }
+  };
+
+  const setTextView = () => {
+    if (editor !== null) {
+      editor.setMode('text');
+    }
+  };
+
+  const setTreeView = () => {
+    if (editor !== null) {
+      editor.setMode('tree');
+    }
+  };
+
   return (
     <StyledLayout>
       <Grid container>
+        <Button variant="contained" onClick={handleFormat}>
+          Format
+        </Button>
+        <Button variant="contained" color="primary" onClick={handleCompact}>
+          Compact
+        </Button>
+        <Button variant="contained" color="primary" onClick={setTextView}>
+          Text
+        </Button>
+        <Button variant="contained" color="primary" onClick={setTreeView}>
+          Tree
+        </Button>
+
         {treeData && (
-          <Editor value={treeData} onChange={handleChange} {...options} />
+          <Editor
+            value={treeData}
+            onChange={handleChange}
+            {...options}
+            ref={setRef}
+          />
         )}
       </Grid>
     </StyledLayout>
@@ -52,9 +103,6 @@ const JsonView = () => {
 };
 
 const RawPage = () => (
-  // Warning: Add your key to RootState in types/index.d.ts file
-  // useInjectReducer({ key: 'dashboardPage', reducer });
-
   <div>
     <Helmet>
       <title>RawPage</title>
