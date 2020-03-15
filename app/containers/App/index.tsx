@@ -8,13 +8,11 @@ import Header from 'components/Header';
 
 import MetaEditorPage from 'containers/MetaEditorPage';
 import JsonEditorPage from 'containers/JsonEditorPage';
+import { Grid } from '@material-ui/core';
 import GlobalStyle from '../../global-styles';
 
-const AppStyle = styled.div`
+const AppStyle = styled(Grid)`
   margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
 `;
 
 const AppRoutes = [

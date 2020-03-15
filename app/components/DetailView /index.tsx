@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import isObject from 'lodash/isObject';
 import get from 'lodash/get';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Grid } from '@material-ui/core';
 import { themeSpacing } from 'styles/styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailDataChangedAction } from 'containers/App/actions';
+import ButtonsBar from 'components/ButtonsBar';
 
-const StyledDetailView = styled.div`
-  padding: ${themeSpacing(1)}px;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
+const StyledDetailView = styled(Grid)`
+  padding: ${themeSpacing(1, 1, 0, 1)};
+  min-height: calc(100vh - 80px);
 `;
 
 // Here we set to height in pixels to force the flex container to scroll
@@ -19,16 +18,6 @@ const StyledForm = styled.form`
   flex-grow: 1;
   height: 1px;
   overflow: auto;
-`;
-
-const ButtonsBar = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: ${themeSpacing(1)}px;
-  padding: ${themeSpacing(1)}px;
-  & > button {
-    margin-left: ${themeSpacing(1)}px;
-  }
 `;
 
 const getDetail = state => {
@@ -63,7 +52,7 @@ const DetailView = () => {
   }, [detailData]);
 
   return (
-    <StyledDetailView>
+    <StyledDetailView container direction="column">
       <StyledForm noValidate autoComplete="off">
         {formData &&
           Object.entries(formData).map(([key, value]) => {
@@ -80,7 +69,7 @@ const DetailView = () => {
             );
           })}
       </StyledForm>
-      <ButtonsBar>
+      <ButtonsBar container justify="flex-end">
         <Button variant="contained" onClick={handleCancel}>
           Cancel
         </Button>

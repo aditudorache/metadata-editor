@@ -7,24 +7,20 @@ import TreeView from 'components/TreeView';
 import styled from 'styled-components';
 import { themeSpacing } from 'styles/styled-components';
 
-const StyledLayout = styled.div`
-  flex: 1;
-  display: flex;
+const StyledLayout = styled(Grid)`
   padding-top: ${themeSpacing(1)}px;
   & > div {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 80px);
   }
-  max-height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 `;
 
 const ScrollableGrid = styled(Grid)`
-  max-height: 100%;
+  max-height: calc(100% - 104px);
   overflow: auto;
   margin: 2px;
   border: 1px solid lightgrey;
 `;
-
-interface Props {}
 
 const MetaEditorPage = () => (
   <div>
@@ -32,14 +28,12 @@ const MetaEditorPage = () => (
       <title>Metadata editor Page</title>
       <meta name="description" content="Metadata editor Page." />
     </Helmet>
-    <StyledLayout>
-      <Grid container className="box">
-        <ScrollableGrid item xs={3} className="column">
-          <TreeView />
-        </ScrollableGrid>
-        <Grid item xs className="column">
-          <DetailView />
-        </Grid>
+    <StyledLayout container>
+      <ScrollableGrid item xs={12} sm={3}>
+        <TreeView />
+      </ScrollableGrid>
+      <Grid item sm>
+        <DetailView />
       </Grid>
     </StyledLayout>
   </div>

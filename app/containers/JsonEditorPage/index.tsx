@@ -1,24 +1,27 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import styled, { themeSpacing } from 'styles/styled-components';
-import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { JsonEditor as Editor } from 'jsoneditor-react';
 import jsonViewData from 'exampleJson';
 import 'jsoneditor-react/es/editor.min.css';
 import { treeChangedAction } from 'containers/App/actions';
+import ButtonsBar from 'components/ButtonsBar';
 
-const StyledLayout = styled.div`
-  flex-grow: 1;
-  // padding-top: ${themeSpacing(1)}px;
+const StyledLayout = styled(Grid)`
+  min-height: calc(100vh - 64px);
+`;
+
+const EditorStyle = styled(Grid)`
+  flex: 1;
   & > div {
-    min-height: calc(100vh - 100px);
-    border: 1px solid grey;
+    height: calc(100vh - 64px - 16px - 52px);
+    padding: ${themeSpacing(1)}px;
+  }
 
-    & > div {
-      width: 100%;
-    }
+  & .jsoneditor {
+    border: 1px solid lightgrey;
   }
 `;
 
@@ -26,9 +29,19 @@ const options = {
   mode: 'text',
   allowedModes: ['text', 'tree'],
   escapeUnicode: true,
+  mainMenuBar: false,
 };
 
+const ChangeViewButton = ({ mode, setMode }) => (
+  <Button variant="contained" color="primary" onClick={() => setMode(mode)}>
+    View as {mode}
+  </Button>
+);
+
+const nextViewMode = view => (view === 'text' ? 'tree' : 'text');
+
 const JsonView = () => {
+  const [viewMode, setViewMode] = useState(options.mode);
   const treeData = useSelector(state => state?.global?.treeData);
   const dispatch = useDispatch();
   const handleChange = data => {
@@ -50,45 +63,28 @@ const JsonView = () => {
   }, [treeData]);
 
   const handleFormat = () => {
-    if (editor && editor.getMode() === 'text') {
+    if (editor && viewMode === 'text') {
       editor.format();
     }
   };
 
   const handleCompact = () => {
-    if (editor !== null && editor.getMode() === 'text') {
+    if (editor !== null && viewMode === 'text') {
       editor.compact();
     }
   };
 
-  const setTextView = () => {
+  const changeView = view => {
+    const newView = view; // nextViewMode(view);
+    setViewMode(newView);
     if (editor !== null) {
-      editor.setMode('text');
-    }
-  };
-
-  const setTreeView = () => {
-    if (editor !== null) {
-      editor.setMode('tree');
+      editor.setMode(newView);
     }
   };
 
   return (
-    <StyledLayout>
-      <Grid container>
-        <Button variant="contained" onClick={handleFormat}>
-          Format
-        </Button>
-        <Button variant="contained" color="primary" onClick={handleCompact}>
-          Compact
-        </Button>
-        <Button variant="contained" color="primary" onClick={setTextView}>
-          Text
-        </Button>
-        <Button variant="contained" color="primary" onClick={setTreeView}>
-          Tree
-        </Button>
-
+    <StyledLayout container direction="column">
+      <EditorStyle item>
         {treeData && (
           <Editor
             value={treeData}
@@ -97,7 +93,20 @@ const JsonView = () => {
             ref={setRef}
           />
         )}
-      </Grid>
+      </EditorStyle>
+      <ButtonsBar container justify="flex-end" alignItems="center">
+        {viewMode === 'text' && (
+          <>
+            <Button variant="contained" onClick={handleFormat}>
+              Format JSON
+            </Button>
+            <Button variant="contained" onClick={handleCompact}>
+              Compact JSON
+            </Button>
+          </>
+        )}
+        <ChangeViewButton mode={nextViewMode(viewMode)} setMode={changeView} />
+      </ButtonsBar>
     </StyledLayout>
   );
 };
