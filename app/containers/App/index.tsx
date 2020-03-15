@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styles/styled-components';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 
 import MetaEditorPage from 'containers/MetaEditorPage';
 import JsonEditorPage from 'containers/JsonEditorPage';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
+import history from 'utils/history';
 import GlobalStyle from '../../global-styles';
 
 const AppStyle = styled(Grid)`
@@ -31,6 +32,8 @@ const AppRoutes = [
 ];
 
 export default function App() {
+  const location = useLocation();
+
   return (
     <AppStyle>
       <Helmet
@@ -41,7 +44,12 @@ export default function App() {
       </Helmet>
       <Header>
         {AppRoutes.map(({ name, path }) => (
-          <Link to={path}>{name}</Link>
+          <Button
+            color={location.pathname === path ? 'primary' : 'inherit'}
+            onClick={() => history.push(path)}
+          >
+            {name}
+          </Button>
         ))}
       </Header>
       <Switch>

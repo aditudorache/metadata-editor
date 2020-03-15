@@ -8,6 +8,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { nodeSelectedAction, treeChangedAction } from 'containers/App/actions';
 import jsonViewData from 'exampleJson';
+import { TreeNode } from 'containers/App/types';
 import extractTree from './extractTree';
 
 const StyledTreeView = styled(MuiTreeView)`
@@ -16,11 +17,11 @@ const StyledTreeView = styled(MuiTreeView)`
 
 const TreeView: React.FC = () => {
   const dispatch = useDispatch();
-  const treeData = useSelector<{ editor?: DashboardPageState }>(
+  const treeData = useSelector<TreeNode | null>(
     state => state?.global?.treeData,
   );
 
-  const [tree, setTree] = useState();
+  const [tree, setTree] = useState<TreeNode | undefined>();
 
   useEffect(() => {
     if (treeData) return;
@@ -29,16 +30,19 @@ const TreeView: React.FC = () => {
 
   useEffect(() => {
     if (!treeData) return;
-    const data = extractTree({ name: 'root', id: 'root' }, treeData);
+    const data = extractTree(
+      { name: 'root', id: 'root' },
+      treeData as TreeNode,
+    );
     setTree(data);
   }, [treeData]);
 
   const renderTree = (nodes: TreeNode) => {
     if (!nodes) return () => {};
     return (
-      <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+      <TreeItem key={nodes.id} nodeId={String(nodes.id)} label={nodes.name}>
         {Array.isArray(nodes.children)
-          ? nodes.children.map(node => renderTree(node))
+          ? nodes.children.map(node => node && renderTree(node))
           : null}
       </TreeItem>
     );
@@ -59,7 +63,7 @@ const TreeView: React.FC = () => {
       defaultExpandIcon={<ChevronRightIcon />}
       onNodeSelect={handleNodeSelect}
     >
-      {renderTree(tree)}
+      {tree && renderTree(tree)}
     </StyledTreeView>
   );
 };

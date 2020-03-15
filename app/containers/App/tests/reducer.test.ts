@@ -1,4 +1,4 @@
-import appReducer from '../reducer';
+import appReducer, { initialState } from '../reducer';
 import { loadRepos, reposLoaded, repoLoadingError } from '../actions';
 import { ContainerState } from '../types';
 
@@ -6,6 +6,7 @@ describe('appReducer', () => {
   let state: ContainerState;
   beforeEach(() => {
     state = {
+      ...initialState,
       loading: false,
       error: false,
     };

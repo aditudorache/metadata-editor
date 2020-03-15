@@ -1,5 +1,5 @@
-// import viewData from 'containers/DashboardPage/viewData';
-import extractTree, { Node } from './extractTree';
+import { Node } from 'containers/App/types';
+import extractTree from './extractTree';
 
 describe('extractTree', () => {
   it('should render a tree with strings', () => {

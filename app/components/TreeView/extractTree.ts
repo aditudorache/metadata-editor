@@ -1,10 +1,6 @@
-export interface Node {
-  id?: string | number;
-  name: string;
-  [name: string]: any;
-}
+import { TreeNode, Node } from 'containers/App/types';
 
-const extractTree = (parent: Node, treeNode: Node) => {
+const extractTree = (parent: Node, treeNode: Node): TreeNode => {
   const children = Object.entries(treeNode)
     .map(([key, value]) => {
       if (Array.isArray(value)) {

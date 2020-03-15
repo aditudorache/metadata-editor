@@ -42,13 +42,13 @@ const nextViewMode = view => (view === 'text' ? 'tree' : 'text');
 
 const JsonView = () => {
   const [viewMode, setViewMode] = useState(options.mode);
-  const treeData = useSelector(state => state?.global?.treeData);
+  const treeData = useSelector<any>(state => state?.global?.treeData);
   const dispatch = useDispatch();
   const handleChange = data => {
     dispatch(treeChangedAction(data || {}));
   };
 
-  const [editor, setEditor] = useState(null);
+  const [editor, setEditor] = useState<any>();
 
   const setRef = instance => {
     if (instance) {
@@ -69,7 +69,7 @@ const JsonView = () => {
   };
 
   const handleCompact = () => {
-    if (editor !== null && viewMode === 'text') {
+    if (editor && viewMode === 'text') {
       editor.compact();
     }
   };

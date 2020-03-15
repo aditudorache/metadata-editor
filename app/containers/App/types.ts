@@ -2,10 +2,14 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from '../../types';
 
-export interface TreeNode {
-  id: string;
+export interface Node {
+  id: string | number;
   name: string;
-  children?: TreeNode[];
+  [name: string]: any;
+}
+
+export interface TreeNode extends Node {
+  children: (TreeNode | null)[];
 }
 
 /* --- STATE --- */

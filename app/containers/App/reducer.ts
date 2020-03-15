@@ -42,7 +42,7 @@ function appReducer(
     case ActionTypes.DETAIL_DATA_CHANGED: {
       const { treeData, selectedNodeId } = state;
       const newTreeData = selectedNodeId
-        ? set(treeData, selectedNodeId, action.payload)
+        ? set<any>(treeData, selectedNodeId, action.payload)
         : action.payload;
       return {
         ...state,
