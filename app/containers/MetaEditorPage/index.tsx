@@ -26,11 +26,11 @@ const ScrollableGrid = styled(Grid)`
 
 interface Props {}
 
-const DashboardPage = () => (
+const MetaEditorPage = () => (
   <div>
     <Helmet>
-      <title>DashboardPage</title>
-      <meta name="description" content="DashboardPage of the application." />
+      <title>Metadata editor Page</title>
+      <meta name="description" content="Metadata editor Page." />
     </Helmet>
     <StyledLayout>
       <Grid container className="box">
@@ -45,4 +45,4 @@ const DashboardPage = () => (
   </div>
 );
 
-export default memo(DashboardPage);
+export default memo(MetaEditorPage);

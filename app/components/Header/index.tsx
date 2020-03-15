@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import styled, { themeSpacing } from 'styles/styled-components';
-import { Link } from 'react-router-dom';
 import Img from 'components/Img';
 
 const StyledTitle = styled(Typography)`
@@ -22,7 +21,7 @@ const StyledHeader = styled.div`
   flex-grow: 1;
 `;
 
-const Header = () => (
+const Header = ({ children }) => (
   <StyledHeader>
     <MuiAppBar position="static" color="default">
       <Toolbar>
@@ -30,8 +29,7 @@ const Header = () => (
           <Img src="/GeoDotNetLogo.png" alt="Metadata editor" />
         </StyledIconButton>
         <StyledTitle variant="h6">Metadata editor</StyledTitle>
-        <Link to="/">Edit</Link>
-        <Link to="/raw">JSON</Link>
+        {children}
       </Toolbar>
     </MuiAppBar>
   </StyledHeader>

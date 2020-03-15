@@ -1,21 +1,13 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styles/styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 
-import DashboardPage from 'containers/DashboardPage';
-import RawPage from 'containers/RawPage';
+import MetaEditorPage from 'containers/MetaEditorPage';
+import JsonEditorPage from 'containers/JsonEditorPage';
 import GlobalStyle from '../../global-styles';
 
 const AppStyle = styled.div`
@@ -24,6 +16,21 @@ const AppStyle = styled.div`
   min-height: 100%;
   flex-direction: column;
 `;
+
+const AppRoutes = [
+  {
+    name: 'JSON',
+    path: '/',
+    exact: true,
+    component: JsonEditorPage,
+  },
+  {
+    name: 'Metadata',
+    path: '/meta-editor',
+    exact: false,
+    component: MetaEditorPage,
+  },
+];
 
 export default function App() {
   return (
@@ -34,10 +41,15 @@ export default function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <Header />
+      <Header>
+        {AppRoutes.map(({ name, path }) => (
+          <Link to={path}>{name}</Link>
+        ))}
+      </Header>
       <Switch>
-        <Route path="/raw" component={RawPage} />
-        <Route exact path="/" component={DashboardPage} />
+        {AppRoutes.map(({ component, path, exact }) => (
+          <Route exact={exact} path={path} component={component} />
+        ))}
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

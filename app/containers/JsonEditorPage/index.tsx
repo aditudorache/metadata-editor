@@ -102,14 +102,14 @@ const JsonView = () => {
   );
 };
 
-const RawPage = () => (
+const JsonEditorPage = () => (
   <div>
     <Helmet>
-      <title>RawPage</title>
-      <meta name="description" content="RawPage of the application." />
+      <title>JSON editor Page</title>
+      <meta name="description" content="JSON editor Page" />
     </Helmet>
     <JsonView />
   </div>
 );
 
-export default memo(RawPage);
+export default memo(JsonEditorPage);
