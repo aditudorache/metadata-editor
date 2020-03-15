@@ -5,9 +5,9 @@ import styled, { themeSpacing } from 'styles/styled-components';
 import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { JsonEditor as Editor } from 'jsoneditor-react';
-import jsonViewData from 'containers/DashboardPage/viewData';
+import jsonViewData from 'exampleJson';
 import 'jsoneditor-react/es/editor.min.css';
-import { treeChangedAction } from 'containers/DashboardPage/actions';
+import { treeChangedAction } from 'containers/App/actions';
 
 const StyledLayout = styled.div`
   flex-grow: 1;
@@ -29,7 +29,7 @@ const options = {
 };
 
 const JsonView = () => {
-  const treeData = useSelector(state => state?.editor?.treeData);
+  const treeData = useSelector(state => state?.global?.treeData);
   const dispatch = useDispatch();
   const handleChange = data => {
     dispatch(treeChangedAction(data || {}));

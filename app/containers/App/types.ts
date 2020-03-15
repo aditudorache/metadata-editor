@@ -2,11 +2,20 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from '../../types';
 
-/* --- STATE --- */
+export interface TreeNode {
+  id: string;
+  name: string;
+  children?: TreeNode[];
+}
 
+/* --- STATE --- */
 interface AppState {
   readonly loading: boolean;
   readonly error?: object | boolean;
+
+  treeData: TreeNode | null;
+  selectedNodeId: string | null;
+  detailData: any;
 }
 
 /* --- ACTIONS --- */

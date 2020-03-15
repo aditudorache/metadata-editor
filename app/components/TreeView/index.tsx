@@ -6,19 +6,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  nodeSelectedAction,
-  treeChangedAction,
-} from 'containers/DashboardPage/actions';
-import jsonViewData from 'containers/DashboardPage/viewData';
-import { DashboardPageState } from 'containers/DashboardPage/types';
+import { nodeSelectedAction, treeChangedAction } from 'containers/App/actions';
+import jsonViewData from 'exampleJson';
 import extractTree from './extractTree';
-
-export interface TreeNode {
-  id: string;
-  name: string;
-  children?: TreeNode[];
-}
 
 const StyledTreeView = styled(MuiTreeView)`
   min-height: calc(100% - 4px);
@@ -27,7 +17,7 @@ const StyledTreeView = styled(MuiTreeView)`
 const TreeView: React.FC = () => {
   const dispatch = useDispatch();
   const treeData = useSelector<{ editor?: DashboardPageState }>(
-    state => state?.editor?.treeData,
+    state => state?.global?.treeData,
   );
 
   const [tree, setTree] = useState();

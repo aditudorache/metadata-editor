@@ -8,9 +8,15 @@
  */
 
 enum ActionTypes {
+  // Global
   LOAD_REPOS = 'boilerplate/App/LOAD_REPOS',
   LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS',
   LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR',
+
+  // Editor
+  NODE_SELECTED = 'app/DashboardPage/NODE_SELECTED',
+  DETAIL_DATA_CHANGED = 'app/DashboardPage/DETAIL_DATA_CHANGED',
+  TREE_CHANGED = 'app/DashboardPage/TREE_CHANGED',
 }
 
 export default ActionTypes;

@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import { TextField, Button } from '@material-ui/core';
 import { themeSpacing } from 'styles/styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailDataChangedAction } from 'containers/DashboardPage/actions';
+import { detailDataChangedAction } from 'containers/App/actions';
 
 const StyledDetailView = styled.div`
   padding: ${themeSpacing(1)}px;
@@ -32,8 +32,8 @@ const ButtonsBar = styled.div`
 `;
 
 const getDetail = state => {
-  if (!state.editor) return null;
-  const { treeData, selectedNodeId } = state?.editor;
+  if (!state.global) return null;
+  const { treeData, selectedNodeId } = state?.global;
   const node = selectedNodeId ? get(treeData, selectedNodeId, null) : treeData;
   return node;
 };
