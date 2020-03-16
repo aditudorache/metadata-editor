@@ -2,13 +2,11 @@ import * as styledComponents from 'styled-components';
 import {
   StylesProvider,
   ThemeProvider as MuiThemeProvider,
-  createMuiTheme,
 } from '@material-ui/core';
+import muiTheme from './muiTheme';
 
 // theme variables
 export interface IThemeInterface {}
-
-const muiTheme = createMuiTheme();
 
 const {
   default: styled,
