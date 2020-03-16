@@ -37,10 +37,10 @@ export default function App() {
   return (
     <AppStyle>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - JSON Metadata editor"
+        defaultTitle="JSON Metadata editor"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="A JSON Metadata editor" />
       </Helmet>
       <Header>
         {AppRoutes.map(({ name, path }) => (
