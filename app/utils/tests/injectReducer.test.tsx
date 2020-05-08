@@ -21,8 +21,6 @@ const Component = () => null;
 const reducer = s => s;
 
 describe('injectReducer decorator', () => {
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  let store;
   let ComponentWithReducer;
   let injectReducer;
   let injectors;
@@ -37,7 +35,6 @@ describe('injectReducer decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
     injectors = {
       injectReducer: jest.fn(),
     };

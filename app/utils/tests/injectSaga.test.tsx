@@ -23,8 +23,6 @@ function* testSaga() {
 
 jest.mock('../sagaInjectors');
 describe('injectSaga decorator', () => {
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  let store;
   let injectors: /* typeof getInjectors */ any;
   let ComponentWithSaga;
 
@@ -36,7 +34,6 @@ describe('injectSaga decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),
