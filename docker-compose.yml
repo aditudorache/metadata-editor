@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  web-container: # NGINX
+    build:
+      args:
+        - BUILD_ENV=acc
+      context: .
+    ipc: host
+    ports:
+      - '3000:80'
+
+  unittest-container:
+    build:
+      context: .
+      target: base
+    environment:
+      - CI=true
+    command: yarn test
