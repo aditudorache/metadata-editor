@@ -29,8 +29,8 @@ describe('extractTree', () => {
       id: 'view',
       name: 'view',
       children: [
-        { name: 'a', id: 'a-id', children: [] },
-        { name: 'b', id: 'b-id', children: [] },
+        { name: 'a', id: 'view.a', children: [] },
+        { name: 'b', id: 'view.b', children: [] },
       ],
     });
   });
@@ -51,18 +51,18 @@ describe('extractTree', () => {
       name: 'view',
       children: [
         {
-          id: 'array',
+          id: 'view.fields',
           name: 'fields',
           children: [
-            { name: 'a-name', id: 'a-id', children: [] },
-            { name: 'b-name', id: 'b-id', children: [] },
+            { name: 'a-name', id: 'view.fields[0]', children: [] },
+            { name: 'b-name', id: 'view.fields[1]', children: [] },
           ],
         },
       ],
     });
   });
 
-  it('should render a composite object', () => {
+  it.only('should render a composite object', () => {
     const tree: Node = {
       id: 'root',
       name: 'root',
@@ -85,29 +85,23 @@ describe('extractTree', () => {
       name: 'view',
       children: [
         {
-          id: 'array',
+          id: 'view.fields',
           name: 'fields',
           children: [
             {
               name: 'a-name',
-              id: 'a-id',
+              id: 'view.fields[0]',
               children: [
-                { name: 'aa', id: 'aa-id', children: [] },
-                { name: 'aa1', id: 'aa1-id', children: [] },
+                { name: 'aa', id: 'view.fields[0].aa', children: [] },
+                { name: 'aa1', id: 'view.fields[0].aa1', children: [] },
               ],
             },
-            { name: 'b-name', id: 'b-id', children: [] },
+            { name: 'b-name', id: 'view.fields[1]', children: [] },
           ],
         },
-        { name: 'c', id: 'c-id', children: [] },
-        { name: 'd', id: 'd-id', children: [] },
+        { name: 'c', id: 'view.c', children: [] },
+        { name: 'd', id: 'view.d', children: [] },
       ],
     });
   });
-
-  // it.only('should render a view object', () => {
-  //   const tree: Node = viewData;
-  //   const result = extractTree({ name: 'view', id: 'view' }, tree);
-  //   expect(result).toEqual({});
-  // });
 });

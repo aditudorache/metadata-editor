@@ -19,6 +19,7 @@ describe('appReducer', () => {
 
   it('should handle the loadRepos action correctly', () => {
     const expectedResult = {
+      ...initialState,
       loading: true,
       error: false,
     };
@@ -33,6 +34,7 @@ describe('appReducer', () => {
     ];
     const username = 'test';
     const expectedResult = {
+      ...initialState,
       loading: false,
       error: false,
     };
@@ -47,6 +49,7 @@ describe('appReducer', () => {
     };
 
     const expectedResult = {
+      ...initialState,
       error: false,
       loading: false,
     };
