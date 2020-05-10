@@ -1,4 +1,7 @@
+# docker-compose -f docker-compose.deploy.yml up
 version: '3.5'
 services:
   web: # NGINX
     image: aditudorache/metadata-editor:latest
+    ports:
+      - '3000:80'
