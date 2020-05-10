@@ -1,0 +1,4 @@
+version: '3.5'
+services:
+  web: # NGINX
+    image: aditudorache/metadata-editor:latest
