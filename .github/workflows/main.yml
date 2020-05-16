@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [master, workflows]
+    branches: [master]
   pull_request:
-    branches: [master, workflows]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,15 +19,31 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install
+        run: yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker build
+        run: docker build -t editor .
+      - name: Docker tag image
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          docker tag editor ${{ secrets.DOCKER_USER }}/metadata-editor:${{ github.sha }}
+          docker tag editor ${{ secrets.DOCKER_USER }}/metadata-editor:latest
+      - name: Docker push
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/metadata-editor:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/metadata-editor:latest
